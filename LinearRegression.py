@@ -14,21 +14,6 @@ BLACK = (0, 0, 0)
 classifier = LinearRegression()
 
 
-def GradientDescent(screen):
-    m, b = 0, 0
-    rate = .005
-    for x, y in zip(dataX, dataY):
-        hypothesis = m * x + b
-        error = hypothesis - y
-        m = m - rate * 1/len(dataX) * error * x
-        b = b - rate * 1/len(dataX) * error
-
-    endY = 500 * m + b
-    print(m, b)
-    pygame.draw.aaline(
-        screen, WHITE, (0, b), (500, endY), 2)
-
-
 def SKlearnGradientDescent(screen, dataX, dataY):
     x = np.array(dataX).reshape(-1, 1)
     y = np.array(dataY)
@@ -44,7 +29,6 @@ def draw(screen, dataX, dataY):
 
     if len(dataX) > 0:
         SKlearnGradientDescent(screen, dataX, dataY)
-        # GradientDescent(screen)
     for x, y in zip(dataX, dataY):
         pygame.draw.circle(screen,  WHITE, (x, y), 3)
 
